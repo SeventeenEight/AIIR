@@ -1,0 +1,45 @@
+openapi: 3.0.3
+info:
+  title: api
+  version: 1.0.0
+  description: symbol delete from text
+paths:
+  /api/{s}:
+    get:
+      operationId: api_retrieve
+      parameters:
+      - in: path
+        name: s
+        schema:
+          type: string
+        required: true
+      tags:
+      - api
+      security:
+      - cookieAuth: []
+      - basicAuth: []
+      - {}
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SymbolDelete'
+          description: ''
+components:
+  schemas:
+    SymbolDelete:
+      type: object
+      properties:
+        input:
+          type: string
+      required:
+      - input
+  securitySchemes:
+    basicAuth:
+      type: http
+      scheme: basic
+    cookieAuth:
+      type: apiKey
+      in: cookie
+      name: sessionid
